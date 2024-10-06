@@ -5,8 +5,8 @@ export const DATA = {
   name: "Harsh Sharma",
   initials: "HS",
   url: "https://harshsharma.info",
-  location: "Bengluru, India",
-  locationLink: "https://www.google.com/maps/place/sanfrancisco",
+  location: "Pune, India",
+  locationLink: "https://maps.app.goo.gl/VLDCeZgfgoZ7KaSa7",
   description:
     "I'm an engineer and an artist based in Pune, India",
   summary:
