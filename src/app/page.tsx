@@ -73,7 +73,7 @@ export default function Page() {
                       "group",
                       index === 0 ? "col-span-2 row-span-2 sm:col-span-2 sm:row-span-2 h-[400px] cursor-pointer" : "",
                       index === 1 || index === 2 ? "col-start-3 sm:col-start-3 h-[193px]" : "",
-                      index === 3 ? "sm:col-start-1 h-[200px]" : "",
+                      index === 3 ? "sm:col-start-1 h-[200px] cursor-pointer" : "",
                       index === 4 ? "col-span-2 sm:col-span-2 sm:row-span-2 h-[200px] sm:h-[200px]" : "",
                     )}
                   >
@@ -99,10 +99,18 @@ export default function Page() {
                   </div>
                 );
 
-                // Wrap Photography card with Link
+                // Wrap clickable cards with Link
                 if (index === 0) {
                   return (
                     <Link key={item} href="/photography" className="contents">
+                      {card}
+                    </Link>
+                  );
+                }
+
+                if (index === 3) {
+                  return (
+                    <Link key={item} href="/about" className="contents">
                       {card}
                     </Link>
                   );
