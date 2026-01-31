@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
+import { Analytics } from "@vercel/analytics/react";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
@@ -74,6 +75,7 @@ export default function RootLayout({
             <Navbar />
           </TooltipProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
