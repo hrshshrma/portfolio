@@ -9,15 +9,15 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function AboutPage() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10 max-w-2xl mx-auto py-[80px] sm:py-24 px-6">
-      <section className="space-y-8">
+    <main className="flex flex-col min-h-[100dvh] space-y-16 max-w-2xl mx-auto py-20 sm:py-24 px-6">
+      <section className="space-y-12">
         <BlurFade delay={BLUR_FADE_DELAY}>
-          <h1 className="font-medium text-2xl tracking-tighter">about</h1>
+          <h1 className="font-serif text-4xl sm:text-5xl tracking-tight">about</h1>
         </BlurFade>
 
         {/* One-liner introduction */}
         <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <p className="text-base leading-relaxed">
+          <p className="text-lg leading-relaxed text-foreground">
             I&apos;m Harsh — an engineer who builds things, breaks things, learns from both, and occasionally captures life through a camera lens.
           </p>
         </BlurFade>
@@ -25,8 +25,8 @@ export default function AboutPage() {
         {/* What I'm doing currently and why */}
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="space-y-4">
-            <h2 className="font-medium text-lg tracking-tight">Currently</h2>
-            <div className="text-sm text-muted-foreground leading-relaxed space-y-3">
+            <h2 className="font-serif text-2xl tracking-tight">Currently</h2>
+            <div className="text-base text-muted-foreground leading-relaxed space-y-4">
               <p>
                 I&apos;m a Software Engineer at AlphaSense, working on the Monitoring Platform team where I build event-driven alerting systems and notification infrastructure. I&apos;ve shipped priority queues that cut alert wait times by 29%, overhauled email template systems, and debugged everything from iOS double notifications to connection timeouts.
               </p>
@@ -43,8 +43,8 @@ export default function AboutPage() {
         {/* Work I've done till now */}
         <BlurFade delay={BLUR_FADE_DELAY * 6}>
           <div className="space-y-4">
-            <h2 className="font-medium text-lg tracking-tight">The Journey So Far</h2>
-            <div className="text-sm text-muted-foreground leading-relaxed space-y-3">
+            <h2 className="font-serif text-2xl tracking-tight">The Journey So Far</h2>
+            <div className="text-base text-muted-foreground leading-relaxed space-y-4">
               <p>
                 I joined AlphaSense as part of their first batch of campus recruits. Started on the Dashboard team building React micro-apps and GraphQL APIs, then moved to the Platform team where I got my hands dirty with the full notification pipeline — from Node.js services to mobile push notifications.
               </p>
@@ -61,13 +61,13 @@ export default function AboutPage() {
         {/* Life Philosophy */}
         <BlurFade delay={BLUR_FADE_DELAY * 8}>
           <div className="space-y-4">
-            <h2 className="font-medium text-lg tracking-tight">How I Think About Life</h2>
-            <div className="text-sm text-muted-foreground leading-relaxed space-y-3">
+            <h2 className="font-serif text-2xl tracking-tight">How I Think About Life</h2>
+            <div className="text-base text-muted-foreground leading-relaxed space-y-4">
               <p>
                 I believe life is like a fabric with many threads — some bright, some muted, all existing at once. In any moment, one thread feels fullest while others wait their turn. Happy or sad, hurtful or joyful, no single thread makes the life. So I try to keep moving, flowing with it, not attaching too hard to any one moment.
               </p>
               <p>
-                My operating principle is simple: <em>Learn enough to form a smart hypothesis. Run the experiment. Update the model. Repeat.</em> Pure action without reflection is just thrashing. Pure reflection without action is just dreaming. You need the loop.
+                My operating principle is simple: <em className="text-foreground">Learn enough to form a smart hypothesis. Run the experiment. Update the model. Repeat.</em> Pure action without reflection is just thrashing. Pure reflection without action is just dreaming. You need the loop.
               </p>
               <p>
                 I&apos;ve come a decent way given where I started, but I know I&apos;m far from where I want to be. That&apos;s fine. Abundance isn&apos;t only inherited — it&apos;s created. And people who create it themselves usually feel it more deeply than those who were handed it.
@@ -81,7 +81,7 @@ export default function AboutPage() {
 
         {/* Closing line */}
         <BlurFade delay={BLUR_FADE_DELAY * 10}>
-          <p className="text-base pt-4 border-t">
+          <p className="text-lg pt-8 border-t border-border font-serif italic">
             All threads together make the life. Keep weaving yours.
           </p>
         </BlurFade>

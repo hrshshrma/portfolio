@@ -32,14 +32,14 @@ export default function Page() {
   };
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10 max-w-2xl mx-auto py-[80px] sm:py-24 px-6">
+    <main className="flex flex-col min-h-[100dvh] space-y-16 max-w-2xl mx-auto py-20 sm:py-24 px-6">
       <section id="hero">
-        <div className="mx-auto w-full max-w-3xl space-y-8">
+        <div className="mx-auto w-full max-w-3xl space-y-6">
           <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
+            <div className="flex-col flex flex-1 space-y-2">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-2xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none"
+                className="font-serif text-4xl sm:text-5xl tracking-tight"
                 yOffset={8}
                 text={`${DATA.name}`}
               />
@@ -49,13 +49,13 @@ export default function Page() {
       </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm sm:text-base text-muted-foreground dark:prose-invert">
+          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             {DATA.description}
           </Markdown>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm sm:text-base text-muted-foreground mt-10 dark:prose-invert">
+          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground mt-8 dark:prose-invert [&_a]:text-accent [&_a]:no-underline hover:[&_a]:underline">
             {DATA.summary}
           </Markdown>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm sm:text-base text-muted-foreground mt-10 dark:prose-invert">
+          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground mt-8 dark:prose-invert">
             {DATA.spare}
           </Markdown>
         </BlurFade>
