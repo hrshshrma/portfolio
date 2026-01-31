@@ -153,33 +153,44 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
     display: none;  /* Chrome, Safari and Opera */
   }
 
-  /* Masonry gallery layout */
-  .masonry-gallery {
-    columns: 1;
-    column-gap: 1rem;
+  /* Photo gallery grid layout */
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   @media (min-width: 640px) {
-    .masonry-gallery {
-      columns: 2;
+    .photo-gallery {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .masonry-gallery {
-      columns: 3;
+    .photo-gallery {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (min-width: 1280px) {
-    .masonry-gallery {
-      columns: 4;
+    .photo-gallery {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
+  .photo-item {
+    width: 100%;
+  }
+
+  .photo-item.landscape {
+    grid-column: span 1;
+    align-self: center;
+  }
+
+  @media (min-width: 640px) {
+    .photo-item.landscape {
+      grid-column: span 2;
+    }
   }
 }
 

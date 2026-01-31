@@ -3,6 +3,7 @@ export interface Photo {
   src: string;
   alt: string;
   caption?: string;
+  landscape?: boolean; // Set to true for wide/landscape photos
 }
 
 // Add your photos here
@@ -26,18 +27,19 @@ export const PHOTOS: Photo[] = [
     src: "/photography/savandurga.jpg",
     alt: "Savandurga hills",
     caption: "Asia's largest monolith, demanding to be conquered.",
+    landscape: true,
   },
   {
     id: "3",
-    src: "/photography/church.jpg",
-    alt: "Church architecture",
-    caption: "Where silence speaks and light tells stories through stained glass.",
+    src: "/photography/explorers.jpg",
+    alt: "Explorers on a journey",
+    caption: "Some paths are best walked with fellow wanderers.",
   },
   {
     id: "4",
-    src: "/photography/cp.jpg",
-    alt: "Connaught Place, Delhi",
-    caption: "The heart of Delhi, where colonial arches meet modern chaos.",
+    src: "/photography/kannur.jpg",
+    alt: "Kannur, Kerala",
+    caption: "Where the Arabian Sea whispers secrets to the shore.",
   },
   {
     id: "5",
@@ -47,9 +49,9 @@ export const PHOTOS: Photo[] = [
   },
   {
     id: "6",
-    src: "/photography/explorers.jpg",
-    alt: "Explorers on a journey",
-    caption: "Some paths are best walked with fellow wanderers.",
+    src: "/photography/church.jpg",
+    alt: "Church architecture",
+    caption: "Where silence speaks and light tells stories through stained glass.",
   },
   {
     id: "7",
@@ -74,6 +76,7 @@ export const PHOTOS: Photo[] = [
     src: "/photography/holi.jpg",
     alt: "Holi festival of colors",
     caption: "A canvas of joy painted by a thousand hands.",
+    landscape: true,
   },
   {
     id: "11",
@@ -86,6 +89,7 @@ export const PHOTOS: Photo[] = [
     src: "/photography/iskcon.jpg",
     alt: "ISKCON Temple",
     caption: "Devotion carved in marble and echoed in chants.",
+    landscape: true,
   },
   {
     id: "13",
@@ -95,9 +99,9 @@ export const PHOTOS: Photo[] = [
   },
   {
     id: "14",
-    src: "/photography/kannur.jpg",
-    alt: "Kannur, Kerala",
-    caption: "Where the Arabian Sea whispers secrets to the shore.",
+    src: "/photography/cp.jpg",
+    alt: "Connaught Place, Delhi",
+    caption: "The heart of Delhi, where colonial arches meet modern chaos.",
   },
   {
     id: "15",
@@ -110,6 +114,7 @@ export const PHOTOS: Photo[] = [
     src: "/photography/mysore-palace-night.jpg",
     alt: "Mysore Palace illuminated at night",
     caption: "A hundred thousand lights breathing life into history.",
+    landscape: true,
   },
   {
     id: "17",
@@ -131,44 +136,65 @@ export const PHOTOS: Photo[] = [
   },
   {
     id: "20",
-    src: "/photography/cat.jpg",
-    alt: "Street cat portrait",
-    caption: "A fleeting moment of feline grace on the streets.",
-  },
-  {
-    id: "21",
     src: "/photography/shingad.jpg",
     alt: "Sinhagad Fort",
     caption: "Maratha pride etched into every weathered stone.",
+  },
+  {
+    id: "21",
+    src: "/photography/spring.jpg",
+    alt: "Spring blossoms",
+    caption: "Nature's promise that warmth always follows the cold.",
   },
   {
     id: "22",
     src: "/photography/shivgange.HEIC.jpg",
     alt: "Shivgange trek",
     caption: "A pilgrim's path winding through ancient boulders.",
+    landscape: true,
   },
   {
     id: "23",
-    src: "/photography/sky.jpg",
-    alt: "Dramatic sky",
-    caption: "The heavens painting their evening masterpiece.",
-  },
-  {
-    id: "24",
-    src: "/photography/spring.jpg",
-    alt: "Spring blossoms",
-    caption: "Nature's promise that warmth always follows the cold.",
-  },
-  {
-    id: "25",
     src: "/photography/vrindawan.jpg",
     alt: "Vrindavan temple town",
     caption: "Sacred streets where every corner hums with devotion.",
   },
   {
-    id: "26",
+    id: "24",
+    src: "/photography/sky.jpg",
+    alt: "Dramatic sky",
+    caption: "The heavens painting their evening masterpiece.",
+    landscape: true,
+  },
+  {
+    id: "25",
     src: "/photography/waves.jpg",
     alt: "Ocean waves",
     caption: "The sea's eternal rhythm, crashing and retreating.",
+    landscape: true,
   },
+  {
+    id: "26",
+    src: "/photography/cat.jpg",
+    alt: "Street cat portrait",
+    caption: "A fleeting moment of feline grace on the streets.",
+  },
+  {
+    id: "27",
+    src: "/photography/sri-venugopalaswamy-temple.jpg",
+    alt: "Sri Venugopalaswamy Temple",
+    caption: "The Venugopala Swamy Temple located at Hosa Kannambadi, near Krishna Raja Sagara, is an example of Hoysala architecture in Karnataka, India",
+  },
+  {
+    id: "28",
+    src: "/photography/goa.jpg",
+    alt: "Goa",
+    caption: "Goa, the land of sun, sand, and sea.",
+  },
+  {
+    id: "29",
+    src: "/photography/bangalore-sunset.jpg",
+    alt: "Bangalore sunset",
+    caption: "The sunset over Bangalore, the city of dreams.",
+  }
 ];

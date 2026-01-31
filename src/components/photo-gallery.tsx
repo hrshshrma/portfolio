@@ -41,22 +41,22 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
 
   return (
     <>
-      <div className="masonry-gallery">
+      <div className="photo-gallery">
         {photos.map((photo, index) => (
           <BlurFade
             key={photo.id}
             delay={BLUR_FADE_DELAY * (index + 3)}
             inView
+            className={cn("photo-item", photo.landscape && "landscape")}
           >
             <div
               className={cn(
-                "masonry-item group cursor-pointer overflow-hidden rounded-lg",
+                "group cursor-pointer overflow-hidden rounded-lg",
                 "transition-all duration-300 hover:shadow-lg"
               )}
               onClick={() => setSelectedIndex(index)}
             >
               <div className="relative">
-                {/* Using native img for automatic dimension handling */}
                 <img
                   src={photo.src}
                   alt={photo.alt}
