@@ -152,6 +152,35 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+
+  /* Masonry gallery layout */
+  .masonry-gallery {
+    columns: 1;
+    column-gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .masonry-gallery {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry-gallery {
+      columns: 3;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .masonry-gallery {
+      columns: 4;
+    }
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
 }
 
 .container-class {
