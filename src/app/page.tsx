@@ -1,132 +1,140 @@
-"use client";
-
-import { Icons } from "@/components/icons";
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { DATA } from "@/data/resume";
+import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import { cn } from "@/lib/utils";
-import Image from 'next/image';
-import { useState } from 'react';
 
-const BLUR_FADE_DELAY = 0.04;
+import { EntryList } from "@/components/entry-list";
+import { SectionHeading } from "@/components/section-heading";
+import { PHOTOS } from "@/data/photography";
+import { SITE } from "@/data/site";
+import { getContentEntries } from "@/lib/content";
 
-const images = [
-  '/photography.jpg',
-  '/tech.png',
-  '/mind.jpeg',
-  '/about.jpg',
-  '/knowledge.jpg',
-];
-
-export default function Page() {
-  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(images.length).fill(false));
-
-  const handleImageLoad = (index: number) => {
-    setImagesLoaded(prev => {
-      const newState = [...prev];
-      newState[index] = true;
-      return newState;
-    });
-  };
+export default async function HomePage() {
+  const [techEntries, mindEntries] = await Promise.all([
+    getContentEntries("tech"),
+    getContentEntries("mind"),
+  ]);
+  const featuredPhotos = PHOTOS.slice(0, 3);
 
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-16 max-w-2xl mx-auto py-20 sm:py-24 px-6">
-      <section id="hero">
-        <div className="mx-auto w-full max-w-3xl space-y-6">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-2">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="font-serif text-4xl sm:text-5xl tracking-tight"
-                yOffset={8}
-                text={`${DATA.name}`}
-              />
+    <div className="site-container page-shell">
+      <section className="grid min-h-[68vh] content-between gap-20 border-b border-border pb-12 sm:pb-16">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_0.8fr] lg:items-start">
+          <div>
+            <p className="eyebrow">{SITE.location}</p>
+            <h1 className="max-w-4xl text-balance font-serif text-6xl leading-[0.96] tracking-[-0.04em] sm:text-7xl lg:text-[6.6rem]">
+              Engineer.
+              <br />
+              Photographer.
+              <br />
+              <span className="text-accent">Work in progress.</span>
+            </h1>
+          </div>
+          <div className="thread-rule space-y-5 lg:mt-14">
+            {SITE.bio.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="text-pretty text-base leading-7 text-muted-foreground"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Link className="text-link" href="/about">
+                More about me ↗
+              </Link>
+              <a className="text-link" href={`mailto:${SITE.email}`}>
+                Say hello ↗
+              </a>
             </div>
           </div>
         </div>
+        <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-muted-foreground">
+          <span>Code · light · awareness</span>
+          <span aria-hidden="true">Scroll ↓</span>
+        </div>
       </section>
-      <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
-            {DATA.description}
-          </Markdown>
-          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground mt-8 dark:prose-invert [&_a]:text-accent [&_a]:no-underline hover:[&_a]:underline">
-            {DATA.summary}
-          </Markdown>
-          <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground mt-8 dark:prose-invert">
-            {DATA.spare}
-          </Markdown>
-        </BlurFade>
-      </section>
-      <section id="work">
-        <BlurFade delay={BLUR_FADE_DELAY * 8}>
-          <div className="relative">
-            <div className="grid grid-cols-3 sm:grid-cols-3 gap-3 py-4 w-full">
-              {["Photography", "Tech", "Mind", "About", "Knowledge"].map((item, index) => {
-                const card = (
-                  <div
-                    className={cn(
-                      "grain-effect",
-                      "relative flex flex-col items-center justify-center overflow-hidden rounded-lg border",
-                      "group",
-                      index === 0 ? "col-span-2 row-span-2 sm:col-span-2 sm:row-span-2 h-[400px] cursor-pointer" : "",
-                      index === 1 || index === 2 ? "col-start-3 sm:col-start-3 h-[193px]" : "",
-                      index === 3 ? "sm:col-start-1 h-[200px] cursor-pointer" : "",
-                      index === 4 ? "col-span-2 sm:col-span-2 sm:row-span-2 h-[200px] sm:h-[200px]" : "",
-                    )}
-                  >
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div className={cn(
-                        "absolute inset-0 bg-white z-10 transition-opacity duration-300",
-                        imagesLoaded[index] ? "opacity-0" : "opacity-100"
-                      )} />
-                      <Image
-                        src={images[index]}
-                        alt={item}
-                        fill
-                        className="absolute inset-0 z-0 transition-transform duration-500 ease-in-out group-hover:scale-110 object-cover"
-                        priority={index === 0}
-                        loading={index === 0 ? undefined : "eager"}
-                        onLoadingComplete={() => handleImageLoad(index)}
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
-                    <span className="relative z-20 pointer-events-none whitespace-pre-wrap bg-white bg-clip-text text-center text-2xl sm:text-3xl font-bold tracking-tighter text-transparent leading-tight py-1">
-                      {item}
-                    </span>
-                  </div>
-                );
 
-                // Wrap clickable cards with Link
-                if (index === 0) {
-                  return (
-                    <Link key={item} href="/photography" className="contents">
-                      {card}
-                    </Link>
-                  );
-                }
-
-                if (index === 3) {
-                  return (
-                    <Link key={item} href="/about" className="contents">
-                      {card}
-                    </Link>
-                  );
-                }
-
-                return <div key={item} className="contents">{card}</div>;
-              })}
-            </div>
-          </div>
-        </BlurFade>
-      </section>
-      <footer className="flex justify-center items-center">
-        <p className="prose max-w-full text-pretty font-sans text-xs sm:text-xs text-muted-foreground mt-10 dark:prose-invert">
-          Copyright © 2026 Harsh Sharma All Rights Reserved. 
+      <section className="py-20 sm:py-28">
+        <p className="eyebrow">Now</p>
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.5fr]">
+          <h2 className="font-serif text-4xl tracking-tight sm:text-5xl">
+            {SITE.now.title}
+          </h2>
+          <p className="max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
+            {SITE.now.description}
           </p>
-      </footer>
-    </main>
+        </div>
+      </section>
+
+      <section className="pb-20 sm:pb-28">
+        <SectionHeading
+          eyebrow="Through my lens"
+          title="Photography"
+          description="A visual notebook of streets, people, architecture, and light."
+          href="/photography"
+          linkLabel="Open gallery"
+        />
+        <div className="grid gap-3 sm:grid-cols-3">
+          {featuredPhotos.map((photo, index) => (
+            <Link
+              href="/photography"
+              key={photo.id}
+              className="group relative overflow-hidden rounded-xl bg-secondary"
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                sizes="(min-width: 640px) 33vw, 100vw"
+                priority={index === 0}
+                className="aspect-[4/5] size-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 pt-16 text-xs text-white/90 opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                {photo.alt}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-16 pb-20 sm:pb-28 lg:grid-cols-2">
+        <div>
+          <SectionHeading
+            eyebrow="Building & learning"
+            title="Tech"
+            href="/tech"
+          />
+          <EntryList
+            entries={techEntries.slice(0, 2)}
+            basePath="/tech/writing"
+          />
+        </div>
+        <div>
+          <SectionHeading
+            eyebrow="Inner work"
+            title="Mind"
+            href="/mind"
+          />
+          <EntryList
+            entries={mindEntries.slice(0, 2)}
+            basePath="/mind/notes"
+          />
+        </div>
+      </section>
+
+      <section className="quiet-panel grid gap-8 sm:grid-cols-[1fr_auto] sm:items-end">
+        <div>
+          <p className="eyebrow">Commonplace</p>
+          <h2 className="font-serif text-4xl tracking-tight">The Library</h2>
+          <p className="mt-3 max-w-2xl text-pretty leading-7 text-muted-foreground">
+            Books, essays, videos, and selected conversations worth returning
+            to—kept with a note about why they mattered.
+          </p>
+        </div>
+        <Link className="text-link" href="/library">
+          Browse the index ↗
+        </Link>
+      </section>
+    </div>
   );
 }
