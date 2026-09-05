@@ -3,52 +3,64 @@ export const SITE = {
   shortName: "Harsh",
   url: "https://harshsharma.info",
   location: "Bengaluru, India",
-  role: "Software engineer, learner, and photographer",
+  role: "Software Engineer 2 · Distributed systems and AI-native engineering",
   description:
-    "A personal space for engineering, photography, inner work, and the references that shape how I think.",
+    "Harsh Sharma writes about production software, agent systems, photography, attention, and the references he returns to.",
   email: "totheharshsharma@gmail.com",
   bio: [
-    "I’m Harsh — a software engineer in Bengaluru, building event-driven systems and learning how to make useful products with AI.",
-    "Away from code, I photograph ordinary moments, read widely, and write to understand what I’m learning about work and life.",
+    "I’m Harsh, a Software Engineer 2 in Bengaluru. I build distributed, event-driven platform services across TypeScript, Node.js, and Java. I started with React and GraphQL product work, so I’m comfortable following a feature from the interface through APIs, queues, workers, storage, delivery, and production behavior.",
+    "AI is part of how I do that work. I build reusable skills and workflows for planning, implementation, review, testing, and delivery. Outside work, I make photographs, read about attention and awareness, and write down what survives contact with my own life.",
   ],
   now: {
-    title: "Learning in public, building with intent.",
+    title:
+      "Building distributed platforms with full-stack context and an AI-native development loop.",
     description:
-      "I’m currently working on monitoring and notification systems at AlphaSense while going deeper into AI engineering, LLMs, and agents.",
+      "I work on distributed notification and alerting platforms where performance, reliability, rollout safety, and observability matter. Alongside that work, I build reusable AI workflows that carry an engineering task from its ticket and repository context through implementation, review, and testing.",
+  },
+  building: {
+    title: "Personal engineering harness",
+    description:
+      "I’m turning the AI workflows I use for repository context, planning, implementation, review, merge-request creation, and testing into a personal engineering harness. The public version will keep human review and verification visible.",
+  },
+  listening: {
+    track: "Diwali",
+    artist: "Skrillex, Naisha & BEAM",
+    href: "https://music.youtube.com/watch?v=8UOaWPR-vWU&si=vvjDJb3RFOK6xKrX",
   },
   principles: [
     {
-      title: "Run the loop",
+      title: "Let the work meet reality",
       description:
-        "Learn enough to form a smart hypothesis. Run the experiment. Update the model. Repeat.",
+        "Learn enough to form a useful hypothesis. Build the smallest honest version, see what happened, and update the next attempt.",
     },
     {
-      title: "Build more than you consume",
+      title: "Follow the failure all the way through",
       description:
-        "Ideas become useful only when they meet reality. Make the smallest honest version and learn from it.",
+        "A symptom is only the start. Inspect the system around it and keep going until the explanation predicts what you can observe.",
     },
     {
-      title: "Hold life lightly",
+      title: "Build support outside memory",
       description:
-        "No single bright or difficult thread defines the whole fabric. Keep moving and keep weaving.",
+        "Checklists, written updates, small time blocks, and a clear next action make good work more repeatable.",
+    },
+    {
+      title: "Leave room for the rest of life",
+      description:
+        "Work matters to me, but it is one part of a life that also contains people, photographs, music, travel, silence, and ordinary evenings.",
     },
   ],
   work: [
     {
       company: "AlphaSense",
-      role: "Software Engineer · Monitoring Platform",
-      period: "2025 — now",
-      location: "Bengaluru",
-      description:
-        "Building event-driven alerting and centralized notification systems, including priority processing and email platform work.",
-    },
-    {
-      company: "AlphaSense",
-      role: "Software Engineer · Dashboard",
-      period: "2024 — 2025",
-      location: "Pune",
-      description:
-        "Built React micro-app experiences and GraphQL-backed product workflows, including a modern Watchlist experience.",
+      role: "Software Engineer 2",
+      period: "2024 — now",
+      location: "India",
+      description: [
+        "I build distributed, event-driven platform services for alerting and multi-channel notification delivery.",
+        "In H1 2026, I took end-to-end architectural ownership of a major alert-delivery migration. It reduced measured end-to-end p95 latency from 3.04 seconds to 1.41 seconds, while per-pod efficiency on the shared delivery path reached 5–6× its previous level.",
+        "The backend work spans Java, TypeScript, Node.js, message queues, Kubernetes, Helm, ArgoCD, and KEDA. I also plan staged rollouts and rollback paths, strengthen release validation, and investigate production behavior across application and infrastructure layers.",
+        "I built React micro-app experiences and GraphQL-backed product workflows. That full-stack foundation now helps me reason about a feature from user interaction to backend delivery and production behavior.",
+      ],
     },
   ],
   navigation: [

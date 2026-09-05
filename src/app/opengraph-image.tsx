@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
               marginTop: 26,
             }}
           >
-            Engineer · Photographer · Work in progress
+            Software engineer · Photographer · Experimenter
           </div>
         </div>
         <div

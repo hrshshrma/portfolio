@@ -5,7 +5,7 @@ import { LibraryIndex } from "@/components/library-index";
 export const metadata: Metadata = {
   title: "Library",
   description:
-    "A curated commonplace book of books, essays, videos, and selected conversations.",
+    "Books, essays, talks, and selected conversations kept with a note about why they matter.",
   alternates: { canonical: "/library" },
 };
 
@@ -18,8 +18,10 @@ export default function LibraryPage() {
           <h1 className="page-title">Library</h1>
         </div>
         <p className="lede">
-          The books, essays, videos, and selected LLM conversations I return
-          to—each kept with a short note about what changed in my thinking.
+          I keep references because I forget where an idea came from and
+          because the useful part of a book is rarely the whole book. This
+          index holds the things I expect to return to, along with the reason
+          each one stayed.
         </p>
       </header>
 

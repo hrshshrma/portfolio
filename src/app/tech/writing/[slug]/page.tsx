@@ -19,7 +19,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = await getContentEntry("tech", slug);
-  if (!entry) return {};
+  if (!entry || entry.metadata.status === "draft") return {};
 
   return {
     title: entry.metadata.title,
@@ -38,7 +38,7 @@ export async function generateMetadata({
 export default async function TechArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const entry = await getContentEntry("tech", slug);
-  if (!entry) notFound();
+  if (!entry || entry.metadata.status === "draft") notFound();
 
   const jsonLd = {
     "@context": "https://schema.org",

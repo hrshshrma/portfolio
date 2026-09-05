@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { EditorialProofHero } from "@/components/editorial-proof-hero";
 import { EntryList } from "@/components/entry-list";
+import { PageAtmosphere } from "@/components/page-atmosphere";
 import { SectionHeading } from "@/components/section-heading";
 import { PHOTOS } from "@/data/photography";
 import { SITE } from "@/data/site";
@@ -15,38 +17,14 @@ export default async function HomePage() {
   const featuredPhotos = PHOTOS.slice(0, 3);
 
   return (
-    <div className="site-container page-shell">
+    <div className="site-container page-shell relative isolate">
+      <PageAtmosphere />
       <section className="grid min-h-[68vh] content-between gap-20 border-b border-border pb-12 sm:pb-16">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_0.8fr] lg:items-start">
-          <div>
-            <p className="eyebrow">{SITE.location}</p>
-            <h1 className="max-w-4xl text-balance font-serif text-6xl leading-[0.96] tracking-[-0.04em] sm:text-7xl lg:text-[6.6rem]">
-              Engineer.
-              <br />
-              Photographer.
-              <br />
-              <span className="text-accent">Work in progress.</span>
-            </h1>
-          </div>
-          <div className="thread-rule space-y-5 lg:mt-14">
-            {SITE.bio.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="text-pretty text-base leading-7 text-muted-foreground"
-              >
-                {paragraph}
-              </p>
-            ))}
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Link className="text-link" href="/about">
-                More about me ↗
-              </Link>
-              <a className="text-link" href={`mailto:${SITE.email}`}>
-                Say hello ↗
-              </a>
-            </div>
-          </div>
-        </div>
+        <EditorialProofHero
+          bio={SITE.bio}
+          email={SITE.email}
+          listening={SITE.listening}
+        />
         <div className="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-muted-foreground">
           <span>Code · light · awareness</span>
           <span aria-hidden="true">Scroll ↓</span>
@@ -69,7 +47,7 @@ export default async function HomePage() {
         <SectionHeading
           eyebrow="Through my lens"
           title="Photography"
-          description="A visual notebook of streets, people, architecture, and light."
+          description="Photographs from Delhi, Bengaluru, Karnataka, and the places between them. Mostly streets, architecture, people, and ordinary light."
           href="/photography"
           linkLabel="Open gallery"
         />
@@ -102,17 +80,20 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Building & learning"
             title="Tech"
+            description="Distributed backend systems, full-stack product paths, production failures, and the AI-native workflows I use to ship."
             href="/tech"
           />
           <EntryList
             entries={techEntries.slice(0, 2)}
             basePath="/tech/writing"
+            emptyMessage="Writing from production lessons is in progress."
           />
         </div>
         <div>
           <SectionHeading
-            eyebrow="Inner work"
+            eyebrow="Personal notes"
             title="Mind"
+            description="Observations about attention, awareness, books, and the structures that help me return to the work."
             href="/mind"
           />
           <EntryList
@@ -127,8 +108,8 @@ export default async function HomePage() {
           <p className="eyebrow">Commonplace</p>
           <h2 className="font-serif text-4xl tracking-tight">The Library</h2>
           <p className="mt-3 max-w-2xl text-pretty leading-7 text-muted-foreground">
-            Books, essays, videos, and selected conversations worth returning
-            to—kept with a note about why they mattered.
+            Books, essays, talks, and selected conversations kept with the
+            reason I may need them again.
           </p>
         </div>
         <Link className="text-link" href="/library">

@@ -13,9 +13,8 @@ export default function GearPage() {
       <p className="eyebrow">Photography</p>
       <h1 className="page-title">Tools, not trophies.</h1>
       <p className="lede mt-8">
-        I’m documenting the exact camera, lenses, and editing setup I use. The
-        useful part of this page will be why each tool earns a place—not a list
-        of specifications.
+        The camera matters when it helps me keep a moment. This is the small kit
+        I use now and the editing process I am still documenting.
       </p>
 
       <section className="mt-16 grid gap-6 sm:grid-cols-2">
@@ -23,16 +22,24 @@ export default function GearPage() {
           <p className="eyebrow">Capture</p>
           <h2 className="font-serif text-3xl">Camera kit</h2>
           <p className="mt-3 leading-7 text-muted-foreground">
-            Body, lenses, and carry setup will be added after the kit is
-            photographed and verified.
+            I use a Sony Alpha 6000 with the compact 16-50mm kit lens and a
+            55-210mm zoom lens. It gives me the image quality I want without
+            requiring a large, expensive kit.
+          </p>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            I also use a OnePlus 13R because the camera already in my pocket is
+            often the one that preserves the moment.
           </p>
         </div>
         <div className="quiet-panel">
           <p className="eyebrow">Develop</p>
           <h2 className="font-serif text-3xl">Lightroom process</h2>
           <p className="mt-3 leading-7 text-muted-foreground">
-            Presets and before/after notes are planned. They will appear only
-            when they are useful enough to share.
+            I edit in Lightroom. A fuller process note is coming after I
+            document the steps I actually repeat.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            Presets are coming later. There is no download yet.
           </p>
         </div>
       </section>

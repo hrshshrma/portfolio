@@ -48,11 +48,11 @@ export function LibraryIndex() {
         <div className="quiet-panel grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
             <p className="eyebrow">The first shelf</p>
-            <h2 className="font-serif text-3xl">Curating, not importing.</h2>
+            <h2 className="font-serif text-3xl">The shelf is still empty.</h2>
             <p className="mt-3 max-w-xl leading-7 text-muted-foreground">
-              This index is intentionally empty while I review old bookmarks
-              and notes. Items will arrive with a reason to return—not as an
-              automated dump of browsing history.
+              I am reviewing old bookmarks and notes before adding anything.
+              Every entry will need a correct source, an honest reading status,
+              and a personal reason to return.
             </p>
           </div>
           <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
