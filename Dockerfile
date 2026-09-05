@@ -1,23 +1,16 @@
-# Use an official Node runtime as the base image
-FROM node:18-alpine
+FROM node:22-alpine
 
-# Set the working directory in the container
 WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Copy package.json and package-lock.json (or pnpm-lock.yaml)
-COPY package*.json ./
+RUN corepack enable
 
-# Install dependencies
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# Copy the rest of the application code
 COPY . .
+RUN pnpm build
 
-# Build the Next.js application
-RUN npm run build
-
-# Expose the port the app runs on
 EXPOSE 3000
 
-# Define the command to run the app
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]

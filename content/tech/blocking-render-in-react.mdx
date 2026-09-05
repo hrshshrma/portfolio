@@ -1,0 +1,36 @@
+---
+title: "Understanding Blocking Render in React"
+publishedAt: "2024-06-18"
+summary: "How synchronous work during render affects responsiveness, and practical ways to keep React interfaces moving."
+type: "writing"
+topics:
+  - React
+  - Performance
+status: "draft"
+---
+
+As React developers, we often focus on creating functional interfaces. Understanding the rendering process is just as important when those interfaces need to stay responsive.
+
+## What is blocking render?
+
+React rendering is synchronous. When a component renders, React executes the component function, its hooks, and its children. Expensive synchronous work during that phase blocks the main thread, delaying visual updates and user input.
+
+```jsx
+function EventCalendarWidget() {
+  const explorerData = useEventExplorer();
+
+  return <Calendar data={explorerData} />;
+}
+```
+
+If `useEventExplorer` performs one or two seconds of synchronous work, the browser cannot paint or respond during that time. The effect becomes more visible when the component sits high in the tree and delays its children as well.
+
+## What to do instead
+
+1. **Move side effects out of render.** Use an effect for work that must happen after React commits.
+2. **Fetch at the right boundary.** Start data work outside the leaf component and pass the result down.
+3. **Split expensive work.** Smaller chunks give the browser opportunities to respond.
+4. **Load code on demand.** Keep non-critical code out of the initial path.
+5. **Memoize measured bottlenecks.** Avoid repeating an expensive calculation when its inputs have not changed.
+
+The right choice depends on what is blocking. Measure first, move work away from render where possible, and keep the critical path small.

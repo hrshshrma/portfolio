@@ -1,8 +1,8 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect } from "react";
 
 import type { Photo } from "@/data/photography";
@@ -11,10 +11,10 @@ interface PhotoLightboxProps {
   photo: Photo | null;
   isOpen: boolean;
   onClose: () => void;
-  onPrevious?: () => void;
-  onNext?: () => void;
-  hasPrevious?: boolean;
-  hasNext?: boolean;
+  onPrevious: () => void;
+  onNext: () => void;
+  hasPrevious: boolean;
+  hasNext: boolean;
 }
 
 export function PhotoLightbox({
@@ -23,106 +23,84 @@ export function PhotoLightbox({
   onClose,
   onPrevious,
   onNext,
-  hasPrevious = false,
-  hasNext = false,
+  hasPrevious,
+  hasNext,
 }: PhotoLightboxProps) {
   const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft" && hasPrevious && onPrevious) {
-        onPrevious();
-      } else if (e.key === "ArrowRight" && hasNext && onNext) {
-        onNext();
-      }
+    (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft" && hasPrevious) onPrevious();
+      if (event.key === "ArrowRight" && hasNext) onNext();
     },
-    [hasPrevious, hasNext, onPrevious, onNext]
+    [hasNext, hasPrevious, onNext, onPrevious]
   );
 
   useEffect(() => {
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
-    }
-  }, [isOpen, handleKeyDown]);
+    if (!isOpen) return;
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown, isOpen]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <AnimatePresence>
-        {isOpen && photo && (
-          <Dialog.Portal forceMount>
-            <Dialog.Overlay asChild>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
-              />
-            </Dialog.Overlay>
-            <Dialog.Content asChild>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/92 backdrop-blur-sm data-[state=closed]:opacity-0" />
+        {photo && (
+          <Dialog.Content className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
+            <Dialog.Title className="sr-only">{photo.alt}</Dialog.Title>
+            <Dialog.Description className="sr-only">
+              {photo.caption ?? "Expanded photograph"}
+            </Dialog.Description>
+
+            <Dialog.Close asChild>
+              <button
+                className="absolute right-4 top-4 z-10 inline-flex size-11 items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white"
+                aria-label="Close lightbox"
               >
-                {/* Close button */}
-                <Dialog.Close asChild>
-                  <button
-                    className="absolute right-4 top-4 z-50 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/70 hover:text-white"
-                    aria-label="Close"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </Dialog.Close>
+                <X aria-hidden="true" />
+              </button>
+            </Dialog.Close>
 
-                {/* Previous button */}
-                {hasPrevious && onPrevious && (
-                  <button
-                    onClick={onPrevious}
-                    className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/70 hover:text-white"
-                    aria-label="Previous photo"
-                  >
-                    <ChevronLeft className="h-6 w-6" />
-                  </button>
-                )}
+            {hasPrevious && (
+              <button
+                type="button"
+                onClick={onPrevious}
+                className="absolute left-3 top-1/2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white sm:left-6"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft aria-hidden="true" />
+              </button>
+            )}
 
-                {/* Next button */}
-                {hasNext && onNext && (
-                  <button
-                    onClick={onNext}
-                    className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white/70 transition-colors hover:bg-black/70 hover:text-white"
-                    aria-label="Next photo"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </button>
-                )}
+            {hasNext && (
+              <button
+                type="button"
+                onClick={onNext}
+                className="absolute right-3 top-1/2 z-10 inline-flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white sm:right-6"
+                aria-label="Next photo"
+              >
+                <ChevronRight aria-hidden="true" />
+              </button>
+            )}
 
-                {/* Image container */}
-                <div className="relative flex max-h-[85vh] max-w-[90vw] flex-col items-center">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="max-h-[75vh] max-w-full rounded-lg object-contain"
-                  />
-
-                  {/* Caption */}
-                  {photo.caption && (
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                      className="mt-4 max-w-lg text-center text-sm text-white/80"
-                    >
-                      {photo.caption}
-                    </motion.p>
-                  )}
-                </div>
-              </motion.div>
-            </Dialog.Content>
-          </Dialog.Portal>
+            <figure className="flex max-h-[92vh] max-w-[90vw] flex-col items-center">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                sizes="90vw"
+                priority
+                className="max-h-[78vh] w-auto max-w-full rounded-md object-contain"
+              />
+              {photo.caption && (
+                <figcaption className="mt-4 max-w-xl text-center text-sm leading-6 text-white/75">
+                  {photo.caption}
+                </figcaption>
+              )}
+            </figure>
+          </Dialog.Content>
         )}
-      </AnimatePresence>
+      </Dialog.Portal>
     </Dialog.Root>
   );
 }

@@ -1,72 +1,48 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
-import BlurFade from "@/components/magicui/blur-fade";
 import { PhotoLightbox } from "@/components/photo-lightbox";
 import type { Photo } from "@/data/photography";
-import { cn } from "@/lib/utils";
 
 interface PhotoGalleryProps {
   photos: Photo[];
 }
 
-const BLUR_FADE_DELAY = 0.04;
+const BLUR_DATA_URL =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI1MCI+PHJlY3QgZmlsbD0iI2U0ZTdlZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjUwIi8+PC9zdmc+";
 
 export function PhotoGallery({ photos }: PhotoGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  const selectedPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
-
-  const handlePrevious = () => {
-    if (selectedIndex !== null && selectedIndex > 0) {
-      setSelectedIndex(selectedIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (selectedIndex !== null && selectedIndex < photos.length - 1) {
-      setSelectedIndex(selectedIndex + 1);
-    }
-  };
-
-  if (photos.length === 0) {
-    return (
-      <p className="text-sm text-muted-foreground">
-        No photos yet. Add photos to /public/photography/ and update the PHOTOS
-        array in /src/data/photography.ts
-      </p>
-    );
-  }
+  const selectedPhoto = selectedIndex === null ? null : photos[selectedIndex];
 
   return (
     <>
-      <div className="photo-gallery">
+      <div className="columns-1 gap-3 sm:columns-2 lg:columns-3 xl:columns-4">
         {photos.map((photo, index) => (
-          <BlurFade
+          <button
+            type="button"
             key={photo.id}
-            delay={BLUR_FADE_DELAY * (index + 3)}
-            inView
-            className={cn("photo-item", photo.landscape && "landscape")}
+            onClick={() => setSelectedIndex(index)}
+            className="group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-lg bg-secondary text-left"
+            aria-label={`Open photo: ${photo.alt}`}
           >
-            <div
-              className={cn(
-                "group cursor-pointer overflow-hidden rounded-lg",
-                "transition-all duration-300 hover:shadow-lg"
-              )}
-              onClick={() => setSelectedIndex(index)}
-            >
-              <div className="relative">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="w-full h-auto transition-transform duration-500 ease-in-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-              </div>
-            </div>
-          </BlurFade>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              loading={index < 4 ? "eager" : "lazy"}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
+              className="h-auto w-full transition duration-500 group-hover:brightness-90"
+            />
+            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-16 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+              {photo.alt}
+            </span>
+          </button>
         ))}
       </div>
 
@@ -74,10 +50,20 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
         photo={selectedPhoto}
         isOpen={selectedIndex !== null}
         onClose={() => setSelectedIndex(null)}
-        onPrevious={handlePrevious}
-        onNext={handleNext}
+        onPrevious={() =>
+          setSelectedIndex((index) =>
+            index === null ? null : Math.max(0, index - 1)
+          )
+        }
+        onNext={() =>
+          setSelectedIndex((index) =>
+            index === null ? null : Math.min(photos.length - 1, index + 1)
+          )
+        }
         hasPrevious={selectedIndex !== null && selectedIndex > 0}
-        hasNext={selectedIndex !== null && selectedIndex < photos.length - 1}
+        hasNext={
+          selectedIndex !== null && selectedIndex < photos.length - 1
+        }
       />
     </>
   );
