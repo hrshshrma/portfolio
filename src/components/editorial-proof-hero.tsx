@@ -9,12 +9,17 @@ interface EditorialProofHeroProps {
     artist: string;
     href: string;
   };
+  employer: {
+    name: string;
+    href: string;
+  };
 }
 
 export function EditorialProofHero({
   bio,
   email,
   listening,
+  employer,
 }: EditorialProofHeroProps) {
   return (
     <div className="relative grid gap-x-10 gap-y-8 py-5 lg:grid-cols-[1.5fr_0.8fr] lg:items-start">
@@ -76,7 +81,7 @@ export function EditorialProofHero({
             key={paragraph}
             className="text-pretty text-base leading-7 text-muted-foreground"
           >
-            {paragraph}
+            {linkEmployerMention(paragraph, employer)}
           </p>
         ))}
         <div className="flex flex-wrap gap-4 pt-2">
@@ -89,6 +94,32 @@ export function EditorialProofHero({
         </div>
       </div>
     </div>
+  );
+}
+
+function linkEmployerMention(
+  text: string,
+  employer: EditorialProofHeroProps["employer"]
+) {
+  const mentionIndex = text.indexOf(employer.name);
+
+  if (mentionIndex === -1) {
+    return text;
+  }
+
+  return (
+    <>
+      {text.slice(0, mentionIndex)}
+      <a
+        href={employer.href}
+        target="_blank"
+        rel="noreferrer"
+        className="text-link"
+      >
+        {employer.name}
+      </a>
+      {text.slice(mentionIndex + employer.name.length)}
+    </>
   );
 }
 

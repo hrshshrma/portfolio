@@ -206,6 +206,64 @@ code[data-theme*=" "] span {
   background-color: var(--shiki-dark-bg);
 }
 
+@keyframes bento-mind-drift {
+  0%,
+  100% {
+    transform: translate3d(-1%, 1%, 0) scale(1.02);
+  }
+  50% {
+    transform: translate3d(1.5%, -1%, 0) scale(1.04);
+  }
+}
+
+@keyframes bento-tech-drift {
+  0%,
+  100% {
+    transform: translate3d(-0.5%, 0, 0);
+  }
+  50% {
+    transform: translate3d(1%, -1%, 0);
+  }
+}
+
+@keyframes bento-tech-route {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes bento-tech-node {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.bento-mind-pattern {
+  animation: bento-mind-drift 16s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bento-tech-pattern {
+  animation: bento-tech-drift 18s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.bento-tech-route {
+  animation: bento-tech-route 5s linear infinite;
+}
+
+.bento-tech-node {
+  animation: bento-tech-node 3.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
