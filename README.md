@@ -5,7 +5,8 @@ curated commonplace library.
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 App Router
+- **Framework**: Next.js 16 App Router
+- **Runtime**: Node.js 22
 - **Styling**: Tailwind CSS
 - **Typography**: Inter + Instrument Serif
 - **UI Components**: Radix UI
@@ -21,6 +22,12 @@ curated commonplace library.
 - Sitemap, robots, RSS, Open Graph image, and structured article metadata
 
 ## Running Locally
+
+Use Node.js 22. With `nvm`, run:
+
+```sh
+nvm use
+```
 
 ```sh
 pnpm install

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.18.1",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -33,7 +36,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
