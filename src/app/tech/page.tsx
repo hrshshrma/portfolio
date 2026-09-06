@@ -4,7 +4,7 @@ import Link from "next/link";
 import { EntryList } from "@/components/entry-list";
 import { PageAtmosphere } from "@/components/page-atmosphere";
 import { SectionHeading } from "@/components/section-heading";
-import { SITE } from "@/data/site";
+import { ALPHASENSE_URL, SITE } from "@/data/site";
 import { getContentEntries } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -59,7 +59,19 @@ export default async function TechPage() {
       <section className="py-20 sm:py-24">
         <SectionHeading
           eyebrow="Experience"
-          title="Platform work at AlphaSense"
+          title={
+            <>
+              Platform work at{" "}
+              <a
+                href={ALPHASENSE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-accent/50 underline-offset-4 hover:text-accent"
+              >
+                AlphaSense
+              </a>
+            </>
+          }
           description="From product-facing React and GraphQL work to distributed services, production rollouts, and platform ownership."
         />
         <ol className="divide-y divide-border border-y border-border">
@@ -74,7 +86,16 @@ export default async function TechPage() {
               </div>
               <div>
                 <h3 className="font-serif text-2xl">{role.role}</h3>
-                <p className="mt-1 text-sm text-accent">{role.company}</p>
+                <p className="mt-1 text-sm text-accent">
+                  <a
+                    href={role.companyHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-accent/40 underline-offset-4 hover:text-foreground"
+                  >
+                    {role.company}
+                  </a>
+                </p>
                 <div className="mt-3 max-w-3xl space-y-3 leading-7 text-muted-foreground">
                   {role.description.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>

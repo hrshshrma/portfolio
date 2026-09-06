@@ -1,3 +1,5 @@
+export const ALPHASENSE_URL = "https://www.alpha-sense.com/";
+
 export const SITE = {
   name: "Harsh Sharma",
   shortName: "Harsh",
@@ -8,7 +10,7 @@ export const SITE = {
     "Harsh Sharma writes about production software, agent systems, photography, attention, and the references he returns to.",
   email: "totheharshsharma@gmail.com",
   bio: [
-    "I’m Harsh, a Software Engineer 2 in Bengaluru. I build distributed, event-driven platform services across TypeScript, Node.js, and Java. I started with React and GraphQL product work, so I’m comfortable following a feature from the interface through APIs, queues, workers, storage, delivery, and production behavior.",
+    "I’m Harsh, a Software Engineer 2 at AlphaSense in Bengaluru. I build distributed, event-driven platform services across TypeScript, Node.js, and Java. I started with React and GraphQL product work, so I’m comfortable following a feature from the interface through APIs, queues, workers, storage, delivery, and production behavior.",
     "AI is part of how I do that work. I build reusable skills and workflows for planning, implementation, review, testing, and delivery. Outside work, I make photographs, read about attention and awareness, and write down what survives contact with my own life.",
   ],
   now: {
@@ -52,6 +54,7 @@ export const SITE = {
   work: [
     {
       company: "AlphaSense",
+      companyHref: ALPHASENSE_URL,
       role: "Software Engineer 2",
       period: "2024 — now",
       location: "India",

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { PageAtmosphere } from "@/components/page-atmosphere";
-import { SITE } from "@/data/site";
+import { ALPHASENSE_URL, SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -30,7 +30,15 @@ export default function AboutPage() {
           <p className="eyebrow">Past</p>
           <div className="space-y-5 text-pretty text-lg leading-8 text-muted-foreground">
             <p>
-              I studied at Delhi Technological University and joined AlphaSense
+              I studied at Delhi Technological University and joined{" "}
+              <a
+                href={ALPHASENSE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-link"
+              >
+                AlphaSense
+              </a>{" "}
               in 2024. My first professional work was close to the interface,
               building React micro-apps and GraphQL-backed product flows.
             </p>
@@ -53,12 +61,20 @@ export default function AboutPage() {
           <p className="eyebrow">Present</p>
           <div className="space-y-5 text-pretty text-lg leading-8 text-muted-foreground">
             <p>
-              I am a Software Engineer 2 at AlphaSense, where I build
-              distributed platform services for alerting and notification
-              delivery. Recent work has included architecture changes, service
-              migrations, performance measurement, production rollouts,
-              integration testing, and failures that crossed application and
-              infrastructure boundaries.
+              I am a Software Engineer 2 at{" "}
+              <a
+                href={ALPHASENSE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-link"
+              >
+                AlphaSense
+              </a>
+              , where I build distributed platform services for alerting and
+              notification delivery. Recent work has included architecture
+              changes, service migrations, performance measurement, production
+              rollouts, integration testing, and failures that crossed
+              application and infrastructure boundaries.
             </p>
             <p>
               My full-stack background helps me follow those systems through
